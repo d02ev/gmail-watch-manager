@@ -34,7 +34,7 @@ Deno.serve(async () => {
 
     // Check existing watch state.
     const { data: state, error: stateError } = await supabase
-      .from("gmail_watch_state")
+      .from("gmail_watch_states")
       .select("history_id, expiration")
       .eq("id", 1)
       .maybeSingle();
@@ -123,7 +123,7 @@ Deno.serve(async () => {
 
     // Save the new watch state.
     const { error: upsertError } = await supabase
-      .from("gmail_watch_state")
+      .from("gmail_watch_states")
       .upsert({
         id: 1,
         history_id: String(watchData.historyId),

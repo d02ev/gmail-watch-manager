@@ -1,3 +1,5 @@
+import { createClient } from "@supabase/supabase-js";
+
 const CLIENT_ID = Deno.env.get("GOOGLE_CLIENT_ID");
 const CLIENT_SECRET = Deno.env.get("GOOGLE_CLIENT_SECRET");
 const REFRESH_TOKEN = Deno.env.get("GOOGLE_REFRESH_TOKEN");
@@ -24,11 +26,6 @@ Deno.serve(async () => {
     ) {
       throw new Error("Missing required environment variables");
     }
-
-    // Create a Supabase admin client.
-    const { createClient } = await import(
-      "https://esm.sh/@supabase/supabase-js@2"
-    );
 
     const supabase = createClient(
       SUPABASE_URL,
